@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyek Borongan</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="nav">
+    <button onclick="tampilkanPekerja()">Kasbon Pekerja</button>
+    <button onclick="tampilkanPengeluaran()">Dana Keluar</button>
+  </div>
+
+  <div class="container">
+    <div id="dataMandor" class="card">
+      <h2>Mandor: Pak Budi</h2>
+      <p><strong>Proyek:</strong> Pembangunan Rumah</p>
+      <p><strong>Nilai Borongan:</strong> Rp 50.000.000</p>
+    </div>
+
+    <div id="pekerjaSection" class="card" style="display: none;">
+      <h3>Kasbon Pekerja</h3>
+      <input type="text" id="namaPekerja" placeholder="Nama Pekerja" />
+      <input type="number" id="kasbonPekerja" placeholder="Jumlah Kasbon" />
+      <button onclick="tambahKasbon()">Tambah Kasbon</button>
+      <ul id="daftarPekerja"></ul>
+    </div>
+
+    <div id="pengeluaranSection" class="card" style="display: none;">
+      <h3>Pengeluaran Proyek</h3>
+      <input type="text" id="keteranganPengeluaran" placeholder="Keterangan" />
+      <input type="number" id="jumlahPengeluaran" placeholder="Jumlah" />
+      <button onclick="tambahPengeluaran()">Tambah</button>
+      <ul id="daftarPengeluaran"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
