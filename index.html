@@ -5,6 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Proyek Borongan</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .nav {
+      background: #004aad;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    .nav button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      background: white;
+      color: #004aad;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    input[type="text"], input[type="number"] {
+      padding: 8px;
+      margin: 5px 0;
+      width: calc(100% - 20px);
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #004aad;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 5px 0;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #eee;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
   <div class="nav">
@@ -14,9 +79,12 @@
 
   <div class="container">
     <div id="dataMandor" class="card">
-      <h2>Mandor: Pak Budi</h2>
+      <h2>Mandor: Pak Ismail</h2>
       <p><strong>Proyek:</strong> Pembangunan Rumah</p>
       <p><strong>Nilai Borongan:</strong> Rp 60.000.000</p>
+      <p><strong>Alamat:</strong> Telagasana, Mundong</p>
+      <p><strong>No. WA:</strong> 085217774931</p>
+      <p><strong>Jenis Pekerjaan:</strong> Bangun rumah, pasang keramik, pasang teras, pengecatan, servis rumah dan kamar mandi, serta jasa pijat keliling</p>
     </div>
 
     <div id="pekerjaSection" class="card" style="display: none;">
@@ -35,6 +103,10 @@
       <ul id="daftarPengeluaran"></ul>
     </div>
   </div>
+
+  <footer>
+    &copy; 2025 Mandor Ismail - Telagasana, Mundong | WA: 085217774931
+  </footer>
 
   <script src="script.js"></script>
 </body>
