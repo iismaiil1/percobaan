@@ -38,13 +38,30 @@
       text-align: center;
       margin-top: 20px;
     }
-    .wa a {
-      text-decoration: none;
-      background: #25d366;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 5px;
-    }
+   .wa {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.wa a {
+  display: inline-block;
+  text-decoration: none;
+  background: #25d366;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  margin: 10px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.wa a.facebook {
+  background: #3b5998;
+}
+
+.wa a:hover {
+  opacity: 0.9;
+}
   .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -105,8 +122,17 @@
       <p>Berbagai varian kertas linting dari model rokok-rokokan hingga rasa-rasa unik.</p>
     </div>
 
-    <div class="wa">
-      <a href="https://wa.me/6285283907654" target="_blank">Pesan via WhatsApp: 0852-8390-7654</a>
+<div class="wa">
+  <!-- Tombol WhatsApp -->
+  <a href="https://wa.me/6285217774931?text=Halo%20Mas%20Hasbu%2C%20aku%20mau%20beli%20tembako" target="_blank">
+    Chat via WhatsApp
+  </a>
+
+  <!-- Tombol Facebook -->
+  <a href="https://facebook.com/hasbu.namaakun" class="facebook" target="_blank">
+    Kunjungi Facebook
+  </a>
+
     </div>
 
 <div class="gallery">
@@ -148,9 +174,10 @@
 
 <h3>IKUTI KAMI</h3>
 <p>
-<img src="facebook.png" alt="Facebook" width="40">
-<img src="Line.png"     alt="Line" width="40">
-<img src="instagram.png" alt="Instagram" width="40">
+  <img src="Facebook.png" alt="Facebook" width="40">
+  <img src="Line.png" alt="Line" width="40">
+  <img src="Instagram.png" alt="Instagram" width="50">
+</p>
 
 <h3>VERIFIKASI ELFS SHOP</h3>
 <p>
