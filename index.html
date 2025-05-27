@@ -5,44 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JMK (Jaya Mbako) - Tembakau Tingwe Lengkap</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fdf6e3;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #4e342e;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    .content {
-      padding: 20px;
-    }
-    .produk {
-      background: #fff8dc;
-      padding: 15px;
-      margin: 10px 0;
-      border-left: 5px solid #6d4c41;
-    }
-    footer {
-      background: #4e342e;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      margin-top: 50px;
-    }
-    .wa {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-    }
-   .wa {
+body {
+  font-family: Arial, sans-serif;
+  background: #401f10ee;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: #4e342e;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+.content {
+  padding: 20px;
+}
+.produk {
+  background: #fff8dc;
+  padding: 15px;
+  margin: 10px 0;
+  border-left: 5px solid #6d4c41;
+}
+footer {
+  background: #4e342e;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 50px;
+}
+.wa {
   text-align: center;
   margin-top: 30px;
 }
-
 .wa a {
   display: inline-block;
   text-decoration: none;
@@ -54,43 +48,64 @@
   font-weight: bold;
   transition: background 0.3s;
 }
-
 .wa a.facebook {
   background: #3b5998;
 }
-
 .wa a:hover {
   opacity: 0.9;
 }
-  .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
-  }
-
-  .gallery img {
-    width: 150px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-    .info-footer {
-      background: #eeeeee;
-      padding: 20px;
-      margin-top: 40px;
-    }
-    .info-footer h3 {
-      margin-top: 0;
-    }
-    .info-footer ul {
-      list-style: none;
-      padding: 0;
-    }
-    .info-footer ul li {
-      margin-bottom: 5px;
-    }
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.gallery img {
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.info-footer {
+  background: #eeeeee;
+  padding: 20px;
+  margin-top: 40px;
+}
+.info-footer h3 {
+  margin-top: 20px;
+}
+.info-footer ul {
+  list-style: none;
+  padding: 0;
+}
+.info-footer ul li {
+  margin-bottom: 5px;
+}
+.payment-methods, .sosmed-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+.payment-item, .sosmed-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 10px;
+  border-left: 5px solid #4e342e;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.payment-item img, .sosmed-item img {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+.sosmed-item span {
+  font-size: 14px;
+  color: #333;
+}
   </style>
 </head>
 <body>
@@ -138,7 +153,7 @@
 <div class="gallery">
   <img src="gambar1.jpg" alt="Gambar 1" />
   <img src="gambar2.jpg" alt="Gambar 2" />
-  <img src="gambar3.jpg" alt="Gambar 3" />
+  <img src="gambar3.png" alt="Gambar 3" />
   <img src="gambar1.jpg" alt="Gambar 4" />
   <img src="gambar2.jpg" alt="Gambar 5" />
   <img src="gambar3.jpg" alt="Gambar 6" />
@@ -163,33 +178,67 @@
   <li>Info Pelayanan Tukang Serba Bisa</li>
 </ul>
 
-<h3>TENTANG KAMI</h3>
-<ul>
-  <li>Profil UMKM JMK - Jaya Mbako</li>
-  <li>Testimoni Pelanggan</li>
-  <li>Artikel Kesehatan & Merokok Tradisional</li>
-  <li>Jasa Tukang Harian & Borongan</li>
-  <li>Kegiatan Sosial & Organisasi Pemuda</li>
-</ul>
+<div style="display: flex; align-items: center; gap: 10px;">
+  <h3 onclick="toggleTentangKami()" style="cursor: pointer; background-color: #4CAF50; color: white; padding: 10px; border-radius: 5px; display: inline-block; margin: 0;">
+    TENTANG KAMI [+]
+  </h3>
+  <span style="font-size: 0.9em; color: gray;">(Klik untuk lihat Tentang Kami)</span>
+</div>
 
+<div id="tentangKami" style="display: none; margin-top: 10px;">
+  <ul style="list-style-type: disc; padding-left: 20px;">
+    <li>Jaya Mbako adalah penyedia tembakau linting berkualitas, dengan cita rasa khas dan aroma alami.</li>
+    <li>Kami menyediakan berbagai pilihan tembakau, kertas linting, dan perlengkapan merokok tradisional.</li>
+    <li>Kualitas adalah prioritas utama. Setiap pesanan dipilih dan dikemas dengan teliti.</li>
+    <li>Kami selalu terbuka terhadap masukan dan keluhan untuk terus meningkatkan layanan dan kepuasan pelanggan.</li>
+    <li>Pesan mudah via WhatsApp. Kami siap melayani dengan cepat dan ramah.</li>
+  </ul>
+</div>
+
+<script>
+function toggleTentangKami() {
+  const bagian = document.getElementById("tentangKami");
+  const judul = document.querySelector("h3[onclick]");
+  if (bagian.style.display === "none") {
+    bagian.style.display = "block";
+    judul.innerHTML = "TENTANG KAMI [−]";
+  } else {
+    bagian.style.display = "none";
+    judul.innerHTML = "TENTANG KAMI [+]";
+  }
+}
+</script>
 <h3>IKUTI KAMI</h3>
 <p>
-  <img src="facebook.png" alt="Facebook" width="40">
+  <img src="Facebook.png" alt="Facebook" width="40">
   <img src="Line.png" alt="Line" width="40">
-  <img src="instagram.png" alt="Instagram" width="50">
+  <img src="Instagram.png" alt="Instagram" width="50">
 </p>
 
-<h3>VERIFIKASI ELFS SHOP</h3>
-<p>
-  <img src="verified1.png" alt="Verifikasi 1" width="80">
-  <img src="verified2.png" alt="Verifikasi 2" width="80">
-  <img src="verified3.png" alt="Verifikasi 3" width="80">
-</p>
-    </div>
+<h3>METODE PEMBAYARAN</h3>
+<div class="payment-methods">
+  <div class="payment-item">
+    <img src="logo-mandiri.png" alt="Mandiri">
+    <span>Bank Mandiri - 123-00-0000000-0 a.n. Hasbu Jaya Mbako</span>
   </div>
+  <div class="payment-item">
+    <img src="bonsai.png" alt="Hasil Tani">
+    <span>Bayar via Hasil Tani: Beras, Gabah, atau Polaga (Pohon Laga)</span>
+  </div>
+</div>
 
-  <footer>
-    &copy; 2025 JMK - Jaya Mbako. Telagasana, Dukuh Mundong.
-  </footer>
-</body>
-</html>
+<h3>IKUTI KAMI</h3>
+<div class="sosmed-icons">
+  <div class="sosmed-item">
+    <img src="Facebook.png" alt="Facebook">
+    <span>facebook: hasbu jaya mbako</span>
+  </div>
+  <div class="sosmed-item">
+    <img src="Line.png" alt="Line">
+    <span>LINE: @hasbujaya</span>
+  </div>
+  <div class="sosmed-item">
+    <img src="Instagram.png" alt="Instagram">
+    <span>instagram: @hasbu.jaya</span>
+  </div>
+</div>
