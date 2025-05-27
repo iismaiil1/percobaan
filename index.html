@@ -106,6 +106,15 @@ footer {
   font-size: 14px;
   color: #333;
 }
+.tombol-toggle {
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 0;
+}
   </style>
 </head>
 <body>
@@ -137,52 +146,44 @@ footer {
       <p>Berbagai varian kertas linting dari model rokok-rokokan hingga rasa-rasa unik.</p>
     </div>
 
-<div class="wa">
-  <!-- Tombol WhatsApp -->
-  <a href="https://wa.me/6285217774931?text=Halo%20Mas%20Hasbu%2C%20aku%20mau%20beli%20tembako" target="_blank">
-    Chat via WhatsApp
-  </a>
-
-  <!-- Tombol Facebook -->
-  <a href="https://facebook.com/hasbu.namaakun" class="facebook" target="_blank">
-    Kunjungi Facebook
-  </a>
-
+    <div class="wa">
+      <a href="https://wa.me/6285217774931?text=Halo%20Mas%20Hasbu%2C%20aku%20mau%20beli%20tembako" target="_blank">Chat via WhatsApp</a>
+      <a href="https://facebook.com/hasbu.namaakun" class="facebook" target="_blank">Kunjungi Facebook</a>
     </div>
 
-<div class="gallery">
-  <img src="gambar1.jpg" alt="Gambar 1" />
-  <img src="gambar2.jpg" alt="Gambar 2" />
-  <img src="gambar3.png" alt="Gambar 3" />
-  <img src="gambar1.jpg" alt="Gambar 4" />
-  <img src="gambar2.jpg" alt="Gambar 5" />
-  <img src="gambar3.jpg" alt="Gambar 6" />
-  <img src="gambar1.jpg" alt="Gambar 7" />
-  <img src="gambar2.jpg" alt="Gambar 8" />
-  <img src="gambar3.jpg" alt="Gambar 9" />
-  
-</div>
+    <div class="gallery">
+      <img src="gambar1.jpg" alt="Gambar 1" />
+      <img src="gambar2.jpg" alt="Gambar 2" />
+      <img src="gambar3.png" alt="Gambar 3" />
+      <img src="gambar1.jpg" alt="Gambar 4" />
+      <img src="gambar2.jpg" alt="Gambar 5" />
+      <img src="gambar3.jpg" alt="Gambar 6" />
+    </div>
 
     <div class="info-footer">
-<h3>TOKO</h3>
-<p>Desa Mundong, Telagasana, Watukumpul, Pemalang, Jawa Tengah</p>
-<p>Nomor Telepon: 0852-8390-7654</p>
-<p>Email: tiutTiut.shop@gmail.com</p>
+      <h3>TOKO</h3>
+      <p>Desa Mundong, Telagasana, Watukumpul, Pemalang, Jawa Tengah</p>
+      <p>Nomor Telepon: 0852-8390-7654</p>
+      <p>Email: tiutTiut.shop@gmail.com</p>
 
-<h3>INFORMASI</h3>
-<ul>
-  <li>Cara Pemesanan Tembakau</li>
-  <li>Panduan Produk & Alat Linting</li>
-  <li>Ketentuan Jual Beli & Retur</li>
-  <li>Tanya Jawab Seputar Produk</li>
-  <li>Info Pelayanan Tukang Serba Bisa</li>
-</ul>
-
-<div style="display: flex; align-items: center; gap: 10px;">
-  <h3 onclick="toggleTentangKami()" style="cursor: pointer; background-color: #4CAF50; color: white; padding: 10px; border-radius: 5px; display: inline-block; margin: 0;">
-    TENTANG KAMI [+]
+      <h3>INFORMASI</h3>
+      <ul>
+        <li>Cara Pemesanan Tembakau</li>
+        <li>Panduan Produk & Alat Linting</li>
+        <li>Ketentuan Jual Beli & Retur</li>
+        <li>Tanya Jawab Seputar Produk</li>
+        <li>Info Pelayanan Tukang Serba Bisa</li>
+      </ul>
+<div class="tentang-kami-toggle" onclick="toggleTentangKami()">
+  <h3 style="cursor: pointer; background-color: #4CAF50; color: white; padding: 10px; border-radius: 20px; display: inline-block; margin: 0;">
+    KLIK DI SINI <br> Melihat Tentang Kami [+]
   </h3>
-  <span style="font-size: 0.9em; color: gray;">(Klik untuk lihat Tentang Kami)</span>
+  <span style="font-size: 0.9em; color: gray;">(Klik untuk membuka atau menutup info tentang kami)</span>
+</div>
+
+<div id="tentangKami" style="display: none; margin-top: 10px;">
+  <!-- Ini tempat tulisan diketik -->
+  <div id="typewriterText" style="white-space: pre-wrap;"></div>
 </div>
 
 <div id="tentangKami" style="display: none; margin-top: 10px;">
@@ -195,50 +196,77 @@ footer {
   </ul>
 </div>
 
+      <h3>IKUTI KAMI</h3>
+      <p>
+        <img src="Facebook.png" alt="Facebook" width="40">
+        <img src="Line.png" alt="Line" width="40">
+        <img src="Instagram.png" alt="Instagram" width="50">
+      </p>
+
+      <h3>METODE PEMBAYARAN</h3>
+      <div class="payment-methods">
+        <div class="payment-item">
+          <img src="logo-mandiri.png" alt="Mandiri">
+          <span>Bank Mandiri - 123-00-0000000-0 a.n. Hasbu Jaya Mbako</span>
+        </div>
+        <div class="payment-item">
+          <img src="bonsai.png" alt="Hasil Tani">
+          <span>Bayar via Hasil Tani: Beras, Gabah, atau Polaga (Pohon Laga)</span>
+        </div>
+      </div>
+
+      <div class="sosmed-icons">
+        <div class="sosmed-item">
+          <img src="Facebook.png" alt="Facebook">
+          <span>facebook: hasbu jaya mbako</span>
+        </div>
+        <div class="sosmed-item">
+          <img src="Line.png" alt="Line">
+          <span>LINE: @hasbujaya</span>
+        </div>
+        <div class="sosmed-item">
+          <img src="Instagram.png" alt="Instagram">
+          <span>instagram: @hasbu.jaya</span>
+        </div>
+      </div>
+    </div>
+  </div>
 <script>
+let isVisible = false;
+
 function toggleTentangKami() {
   const bagian = document.getElementById("tentangKami");
-  const judul = document.querySelector("h3[onclick]");
-  if (bagian.style.display === "none") {
+  const judul = document.querySelector(".tentang-kami-toggle h3");
+  const textContainer = document.getElementById("typewriterText");
+
+  const textAsli = 
+`• Jaya Mbako adalah penyedia tembakau linting berkualitas, dengan cita rasa khas dan aroma alami.
+• Kami menyediakan berbagai pilihan tembakau, kertas linting, dan perlengkapan merokok tradisional.
+• Kualitas adalah prioritas utama. Setiap pesanan dipilih dan dikemas dengan teliti.
+• Kami selalu terbuka terhadap masukan dan keluhan untuk terus meningkatkan layanan dan kepuasan pelanggan.
+• Pesan mudah via WhatsApp. Kami siap melayani dengan cepat dan ramah.`;
+
+  if (!isVisible) {
     bagian.style.display = "block";
-    judul.innerHTML = "TENTANG KAMI [−]";
+    textContainer.innerHTML = "";
+    judul.innerHTML = 'KLIK DI SINI <br> Melihat Tentang Kami [−]';
+    ketik(textAsli, 0, textContainer);
+    isVisible = true;
   } else {
     bagian.style.display = "none";
-    judul.innerHTML = "TENTANG KAMI [+]";
+    judul.innerHTML = 'KLIK DI SINI <br> Melihat Tentang Kami [+]';
+    isVisible = false;
+  }
+}
+
+function ketik(teks, index, container) {
+  if (index < teks.length) {
+    container.innerHTML += teks.charAt(index);
+    setTimeout(function() {
+      ketik(teks, index + 1, container);
+    }, 5); // 5 ms per huruf (lebih cepat)
   }
 }
 </script>
-<h3>IKUTI KAMI</h3>
-<p>
-  <img src="Facebook.png" alt="Facebook" width="40">
-  <img src="Line.png" alt="Line" width="40">
-  <img src="Instagram.png" alt="Instagram" width="50">
-</p>
-
-<h3>METODE PEMBAYARAN</h3>
-<div class="payment-methods">
-  <div class="payment-item">
-    <img src="logo-mandiri.png" alt="Mandiri">
-    <span>Bank Mandiri - 123-00-0000000-0 a.n. Hasbu Jaya Mbako</span>
-  </div>
-  <div class="payment-item">
-    <img src="bonsai.png" alt="Hasil Tani">
-    <span>Bayar via Hasil Tani: Beras, Gabah, atau Polaga (Pohon Laga)</span>
-  </div>
-</div>
-
-<h3>IKUTI KAMI</h3>
-<div class="sosmed-icons">
-  <div class="sosmed-item">
-    <img src="Facebook.png" alt="Facebook">
-    <span>facebook: hasbu jaya mbako</span>
-  </div>
-  <div class="sosmed-item">
-    <img src="Line.png" alt="Line">
-    <span>LINE: @hasbujaya</span>
-  </div>
-  <div class="sosmed-item">
-    <img src="Instagram.png" alt="Instagram">
-    <span>instagram: @hasbu.jaya</span>
-  </div>
-</div>
+</body>
+</html>
