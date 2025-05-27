@@ -174,27 +174,17 @@ footer {
         <li>Tanya Jawab Seputar Produk</li>
         <li>Info Pelayanan Tukang Serba Bisa</li>
       </ul>
-<div class="tentang-kami-toggle" onclick="toggleTentangKami()">
-  <h3 style="cursor: pointer; background-color: #4CAF50; color: white; padding: 10px; border-radius: 20px; display: inline-block; margin: 0;">
-    KLIK DI SINI <br> Melihat Tentang Kami [+]
-  </h3>
-  <span style="font-size: 0.9em; color: gray;">(Klik untuk membuka atau menutup info tentang kami)</span>
-</div>
 
-<div id="tentangKami" style="display: none; margin-top: 10px;">
-  <!-- Ini tempat tulisan diketik -->
-  <div id="typewriterText" style="white-space: pre-wrap;"></div>
-</div>
+      <div class="tentang-kami-toggle" onclick="toggleTentangKami()">
+        <h3 style="cursor: pointer; background-color: #4CAF50; color: white; padding: 10px; border-radius: 20px; display: inline-block; margin: 0;">
+          KLIK DI SINI <br> Melihat Tentang Kami [+]
+        </h3>
+        <span style="font-size: 0.9em; color: gray;"></span>
+      </div>
 
-<div id="tentangKami" style="display: none; margin-top: 10px;">
-  <ul style="list-style-type: disc; padding-left: 20px;">
-    <li>Jaya Mbako adalah penyedia tembakau linting berkualitas, dengan cita rasa khas dan aroma alami.</li>
-    <li>Kami menyediakan berbagai pilihan tembakau, kertas linting, dan perlengkapan merokok tradisional.</li>
-    <li>Kualitas adalah prioritas utama. Setiap pesanan dipilih dan dikemas dengan teliti.</li>
-    <li>Kami selalu terbuka terhadap masukan dan keluhan untuk terus meningkatkan layanan dan kepuasan pelanggan.</li>
-    <li>Pesan mudah via WhatsApp. Kami siap melayani dengan cepat dan ramah.</li>
-  </ul>
-</div>
+      <div id="tentangKami" style="display: none; margin-top: 10px;">
+        <div id="typewriterText" style="white-space: pre-wrap;"></div>
+      </div>
 
       <h3>IKUTI KAMI</h3>
       <p>
@@ -231,6 +221,7 @@ footer {
       </div>
     </div>
   </div>
+
 <script>
 let isVisible = false;
 
@@ -250,23 +241,21 @@ function toggleTentangKami() {
     bagian.style.display = "block";
     textContainer.innerHTML = "";
     judul.innerHTML = 'KLIK DI SINI <br> Melihat Tentang Kami [−]';
-    ketik(textAsli, 0, textContainer);
-    isVisible = true;
+    ketik(textAsli, textContainer);
   } else {
     bagian.style.display = "none";
     judul.innerHTML = 'KLIK DI SINI <br> Melihat Tentang Kami [+]';
-    isVisible = false;
   }
+  isVisible = !isVisible;
 }
 
-function ketik(teks, index, container) {
-  if (index < teks.length) {
-    container.innerHTML += teks.charAt(index);
-    setTimeout(function() {
-      ketik(teks, index + 1, container);
-    }, 5); // 5 ms per huruf (lebih cepat)
+function ketik(text, container, i = 0) {
+  if (i < text.length) {
+    container.innerHTML += text.charAt(i);
+    setTimeout(() => ketik(text, container, i + 1), 15);
   }
 }
 </script>
+
 </body>
 </html>
