@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kamus Belajar JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.2em;
+      background: linear-gradient(90deg, #ff0066, #ffcc00, #33cc33, #0099ff, #9900cc);
+      background-size: 400% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: zoomFade 1s ease both, gradientMove 8s ease infinite;
+    }
+
+    @keyframes zoomFade {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #searchBox {
+      width: 100%;
+      padding: 10px 35px 10px 40px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      outline: none;
+    }
+
+    .search-container {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .search-container::before {
+      content: '🔍';
+      position: absolute;
+      left: 12px;
+      top: 8px;
+      font-size: 18px;
+    }
+
+    #suggestions {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      display: none;
+      position: absolute;
+      width: 100%;
+      z-index: 999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #suggestions li {
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    #suggestions li:hover {
+      background-color: #f0f0f0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background: #eee;
+    }
+
+    td:first-child {
+      width: 30%;
+      word-break: break-word;
+    }
+
+    td:last-child {
+      width: 70%;
+    }
+
+    code {
+      background: #eee;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+
+    .highlight {
+      background: #d1f7c4 !important;
+      transition: background 0.5s ease-in-out;
+    }
+
+    .active-row {
+      background-color: #cce5ff !important;
+      font-weight: bold;
+    }
+
+    table tbody tr {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Kamus Dasar JavaScript</h1>
+
+<div class="search-container">
+  <input type="text" id="searchBox" placeholder="Cari seperti 'console.log', 'function', 'array'...">
+  <ul id="suggestions"></ul>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Perintah / Simbol</th>
+      <th>Penjelasan Sederhana</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id="console-log"><td><code>console.log()</code></td><td>Mencetak output ke konsol</td></tr>
+    <tr id="let"><td><code>let</code></td><td>Variabel bisa diubah</td></tr>
+    <tr id="const"><td><code>const</code></td><td>Variabel tetap (konstan)</td></tr>
+    <tr id="function"><td><code>function</code></td><td>Membuat fungsi</td></tr>
+    <tr id="arrow"><td><code>=></code></td><td>Arrow function (fungsi pendek)</td></tr>
+    <tr id="array"><td><code>[]</code></td><td>Struktur data array</td></tr>
+    <tr id="object"><td><code>{}</code></td><td>Struktur data objek</td></tr>
+    <tr id="if"><td><code>if</code></td><td>Kondisi jika</td></tr>
+    <tr id="else"><td><code>else</code></td><td>Kondisi jika tidak</td></tr>
+    <tr id="loop"><td><code>for / while</code></td><td>Perulangan</td></tr>
+    <tr id="return"><td><code>return</code></td><td>Mengembalikan nilai dari fungsi</td></tr>
+    <tr id="event"><td><code>addEventListener()</code></td><td>Menangani event seperti klik</td></tr>
+    <tr id="dom"><td><code>document.getElementById()</code></td><td>Mengakses elemen HTML</td></tr>
+    
+  </tbody>
+</table>
+
+<h2>Contoh:</h2>
+<pre>
+// Menampilkan teks ke konsol
+console.log("Halo dunia!");
+
+// Variabel bisa diubah
+let nama = "Ismail";
+
+// Variabel tetap (konstan)
+const umur = 25;
+
+// Fungsi biasa
+function sapa(user) {
+  return "Hai, " + user + "!";
+}
+
+// Arrow function
+const tambah = (a, b) => a + b;
+
+// Array
+let daftar = ["apel", "jeruk", "mangga"];
+
+// Objek
+let orang = { nama: "Ismail", umur: 25 };
+
+// Kondisi
+if (umur >= 18) {
+  console.log("Dewasa");
+} else {
+  console.log("Anak-anak");
+}
+
+// Perulangan
+for (let i = 0; i < daftar.length; i++) {
+  console.log(daftar[i]);
+}
+</pre>
+
+<script>
+const mapping = {
+  "console": "console-log",
+  "print": "console-log",
+  "log": "console-log",
+  "variabel": "let",
+  "konstan": "const",
+  "fungsi": "function",
+  "panah": "arrow",
+  "array": "array",
+  "objek": "object",
+  "kondisi": "if",
+  "jika tidak": "else",
+  "perulangan": "loop",
+  "kembali": "return",
+  "event": "event",
+  "klik": "event",
+  "html": "dom",
+  "get element": "dom"
+};
+
+const input = document.getElementById("searchBox");
+const suggestionBox = document.getElementById("suggestions");
+
+input.addEventListener("input", () => {
+  const keyword = input.value.toLowerCase().trim();
+  suggestionBox.innerHTML = "";
+  if (!keyword) return suggestionBox.style.display = "none";
+
+  const matches = Object.keys(mapping).filter(k => k.includes(keyword));
+  if (matches.length) {
+    matches.forEach(match => {
+      const li = document.createElement("li");
+      li.textContent = match;
+      li.onclick = () => {
+        input.value = match;
+        suggestionBox.style.display = "none";
+        scrollToTarget(mapping[match]);
+      };
+      suggestionBox.appendChild(li);
+    });
+    suggestionBox.style.display = "block";
+  } else {
+    suggestionBox.style.display = "none";
+  }
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target !== input) suggestionBox.style.display = "none";
+});
+
+function scrollToTarget(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+    document.querySelectorAll("table tbody tr").forEach(r => r.classList.remove("active-row"));
+    el.classList.add("highlight", "active-row");
+    setTimeout(() => el.classList.remove("highlight"), 1000);
+  }
+}
+
+const rows = document.querySelectorAll("table tbody tr");
+rows.forEach(row => {
+  row.addEventListener("click", () => {
+    rows.forEach(r => r.classList.remove("active-row"));
+    row.classList.add("active-row");
+    row.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+});
+</script>
+
+</body>
+</html>

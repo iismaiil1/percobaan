@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kamus Perintah Termux & Git</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.2em;
+      background: linear-gradient(90deg, #ff0066, #ffcc00, #33cc33, #0099ff, #9900cc);
+      background-size: 400% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: zoomFade 1s ease both, gradientMove 8s ease infinite;
+    }
+
+    @keyframes zoomFade {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #searchBox {
+      width: 100%;
+      padding: 10px 35px 10px 40px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      outline: none;
+    }
+
+    .search-container {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .search-container::before {
+      content: '🔍';
+      position: absolute;
+      left: 12px;
+      top: 8px;
+      font-size: 18px;
+    }
+
+    #suggestions {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      display: none;
+      position: absolute;
+      width: 100%;
+      z-index: 999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #suggestions li {
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    #suggestions li:hover {
+      background-color: #f0f0f0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background: #eee;
+    }
+
+    td:first-child {
+      width: 30%;
+      word-break: break-word;
+    }
+
+    td:last-child {
+      width: 70%;
+    }
+
+    code {
+      background: #eee;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+
+    .highlight {
+      background: #d1f7c4 !important;
+      transition: background 0.5s ease-in-out;
+    }
+
+    .active-row {
+      background-color: #cce5ff !important;
+      font-weight: bold;
+    }
+
+    table tbody tr {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Kamus Perintah Termux & Git</h1>
+
+<div class="search-container">
+  <input type="text" id="searchBox" placeholder="Cari perintah seperti 'masuk GitHub', 'ganti remote', 'hapus', dll...">
+  <ul id="suggestions"></ul>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Perintah / Simbol</th>
+      <th>Penjelasan Sederhana</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr id="lokasi"><td><code>pwd</code></td><td>Menampilkan alamat folder aktif saat ini (working directory).</td></tr>
+<tr id="lokasi-saat-aktif"><td><code>.</code></td><td>Titik (.) mewakili folder aktif saat ini. Contoh: <code>git add .</code> artinya tambahkan semua file dari folder aktif.</td></tr>
+<tr id="naik"><td><code>..</code></td><td>Naik satu tingkat ke folder induk.</td></tr>
+<tr id="naik2"><td><code>../..</code></td><td>Naik dua tingkat ke atas dari posisi folder sekarang.</td></tr>
+<tr id="naik3"><td><code>../../..</code></td><td>Naik tiga tingkat ke atas dari folder aktif.</td></tr>
+<tr id="root"><td><code>/</code></td><td>Folder paling atas (root) dalam sistem file Linux/Termux.</td></tr>
+<tr id="semua"><td><code>*</code></td><td>Wildcard: mewakili semua file atau folder. Contoh: <code>rm *</code> hapus semua file di folder aktif.</td></tr>
+<tr id="home"><td><code>~</code></td><td>Folder home pengguna saat ini. Contoh: <code>cd ~</code> langsung masuk ke folder utama.</td></tr>
+<tr id="rekursif"><td><code>-r</code></td><td>Opsi rekursif, artinya semua isi folder akan ikut diproses. Wajib saat hapus folder.</td></tr>
+<tr id="paksa"><td><code>-f</code></td><td>Paksa tanpa konfirmasi. Digunakan agar perintah tetap berjalan walau ada error.</td></tr>
+<tr id="pindah"><td><code>cd</code></td><td>Ganti/memasuki folder lain. Contoh: <code>cd nama_folder</code></td></tr>
+<tr id="lihat"><td><code>ls</code></td><td>Melihat daftar isi folder.</td></tr>
+<tr id="salin"><td><code>cp</code></td><td>Salin file atau folder. Contoh: <code>cp file1 file2</code></td></tr>
+<tr id="ganti"><td><code>mv</code></td><td>Memindahkan atau mengganti nama file/folder.</td></tr>
+<tr id="hapus"><td><code>rm</code></td><td>Menghapus file. Tambahkan <code>-r</code> jika ingin hapus folder.</td></tr>
+<tr id="buat-folder"><td><code>mkdir</code></td><td>Membuat folder baru.</td></tr>
+<tr id="buat-file"><td><code>touch</code></td><td>Membuat file kosong baru.</td></tr>
+<tr id="bersih"><td><code>clear</code></td><td>Membersihkan layar terminal.</td></tr>
+<tr id="keluar"><td><code>exit</code></td><td>Keluar dari sesi Termux/terminal saat ini.</td></tr>
+<tr id="init"><td><code>git init</code></td><td>Memulai repository Git baru di folder saat ini. Wajib sebelum bisa menggunakan perintah Git lainnya.</td></tr>
+<tr id="add"><td><code>git add</code></td><td>Menambahkan file ke staging area (siap untuk disimpan). Contoh: <code>git add .</code> menambahkan semua perubahan.</td></tr>
+<tr id="commit"><td><code>git commit -m "pesan"</code></td><td>Menyimpan snapshot perubahan dengan pesan tertentu.</td></tr>
+<tr id="push"><td><code>git push origin main</code></td><td>Mengirim commit dari lokal ke GitHub pada cabang (branch) <code>main</code>.</td></tr>
+<tr id="pull"><td><code>git pull</code></td><td>Mengambil dan langsung menggabungkan perubahan dari GitHub ke folder proyek lokal (gabungan dari <code>fetch</code> dan <code>merge</code>).</td></tr>
+<tr id="status"><td><code>git status</code></td><td>Menampilkan status file: yang berubah, belum disimpan, atau sudah di-stage.</td></tr>
+<tr id="clone"><td><code>git clone URL</code></td><td>Menyalin (mengunduh) repository dari GitHub ke komputer lokal.</td></tr>
+<tr id="log"><td><code>git log</code></td><td>Melihat daftar riwayat commit dari waktu ke waktu.</td></tr>
+<tr id="reflog"><td><code>git reflog</code></td><td>Menampilkan riwayat lengkap posisi HEAD, termasuk setelah reset.</td></tr>
+<tr id="balik sebelum"><td><code>git reset --hard HEAD@{1}</code></td><td>Mengembalikan kondisi folder sebelum melakukan <code>git pull</code>.</td></tr>
+<tr id="balik lagi ke setelah"><td><code>git reset --hard HEAD@{0}</code></td><td>Kembalikan lagi ke kondisi setelah <code>git pull</code>.</td></tr>
+<tr id="restore"><td><code>git checkout -- nama_file</code></td><td>Mengembalikan isi file ke kondisi commit terakhir (membatalkan perubahan lokal).</td></tr>
+<tr id="hapus-git"><td><code>git rm nama_file</code></td><td>Menghapus file dari Git dan juga dari folder lokal.</td></tr>
+<tr id="balikkan"><td><code>git checkout HEAD~1 -- nama_file</code></td><td>Mengembalikan file yang terhapus dari commit sebelumnya.</td></tr>
+<tr id="config-user"><td><code>git config --global user.name "Namamu"</code></td><td>Setel nama pengguna Git secara global.</td></tr>
+<tr id="config-email"><td><code>git config --global user.email "email@mu.com"</code></td><td>Setel alamat email untuk identitas commit Git.</td></tr>
+<tr id="masuk-github"><td><code>git remote add origin https://github.com/namauser/namarepo.git</code></td><td>Menautkan repository lokal dengan GitHub (remote origin).</td></tr>
+<tr id="cek-remote"><td><code>git remote -v</code></td><td>Melihat daftar URL remote yang tersambung ke repository Git.</td></tr>
+<tr id="ganti-remote"><td><code>git remote set-url origin URL_baru</code></td><td>Mengganti URL remote ke alamat baru (misal, jika username berubah).</td></tr>
+<tr id="buat-token"><td><code>gh auth login</code></td><td>Login ke GitHub menggunakan token dengan bantuan GitHub CLI (<code>gh</code>).</td></tr>
+<tr id="clone-private"><td><code>git clone https://username:token@github.com/user/repo.git</code></td><td>Meng-clone repository privat dengan menyertakan token akses GitHub.</td></tr>
+  </tbody>
+</table>
+
+<h2>Contoh:</h2>
+<pre>
+git config --global user.name "Um Ismail"
+git config --global user.email "ismail@example.com"
+git init
+git remote add origin https://github.com/umismail/repo.git
+git add .
+git commit -m "commit pertama"
+git push -u origin main
+</pre>
+
+<script>
+const mapping = {
+  "pwd": "lokasi",
+  "lokasi saat aktif": "lokasi-saat-aktif",
+  "lihat lokasi": "lokasi",
+  "naik satu": "naik",
+"naik dua": "naik2",
+"naik tiga": "naik3",
+  "pindah": "pindah",
+  "ganti nama": "ganti",
+  "salin": "salin",
+  "hapus": "hapus",
+  "push": "push",
+  "pull": "pull",
+  "commit": "commit",
+  "lihat isi": "lihat",
+  "buat folder": "buat-folder",
+  "buat file": "buat-file",
+  "keluar": "keluar",
+  "bersih": "bersih",
+  "status": "status",
+  "clone": "clone",
+  "log": "log",
+  "reflog": "reflog",
+  "balik lagi ke setelah": "balik lagi ke setelah",
+  "balikkan": "balikkan",
+  "balik sebelum": "balik sebelum",
+  "restore": "restore",
+  "cara masuk github": "masuk-github",
+  "sambung github": "masuk-github",
+  "login github": "buat-token",
+  "buat token": "buat-token",
+  "set nama git": "config-user",
+  "set email git": "config-email",
+  "cek remote": "cek-remote",
+  "ganti remote": "ganti-remote",
+  "clone privat": "clone-private"
+};
+
+const input = document.getElementById("searchBox");
+const suggestionBox = document.getElementById("suggestions");
+
+input.addEventListener("input", () => {
+  const keyword = input.value.toLowerCase().trim();
+  suggestionBox.innerHTML = "";
+  if (!keyword) return suggestionBox.style.display = "none";
+
+  const matches = Object.keys(mapping).filter(k => k.includes(keyword));
+  if (matches.length) {
+    matches.forEach(match => {
+      const li = document.createElement("li");
+      li.textContent = match;
+      li.onclick = () => {
+        input.value = match;
+        suggestionBox.style.display = "none";
+        scrollToTarget(mapping[match]);
+      };
+      suggestionBox.appendChild(li);
+    });
+    suggestionBox.style.display = "block";
+  } else {
+    suggestionBox.style.display = "none";
+  }
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target !== input) suggestionBox.style.display = "none";
+});
+
+function scrollToTarget(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+    document.querySelectorAll("table tbody tr").forEach(r => r.classList.remove("active-row"));
+    el.classList.add("highlight", "active-row");
+    setTimeout(() => el.classList.remove("highlight"), 1000);
+  }
+}
+
+const rows = document.querySelectorAll("table tbody tr");
+rows.forEach(row => {
+  row.addEventListener("click", () => {
+    rows.forEach(r => r.classList.remove("active-row"));
+    row.classList.add("active-row");
+    row.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+});
+</script>
+
+</body>
+</html>
