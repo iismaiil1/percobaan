@@ -1,10 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Website Percobaan</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beranda Belajar Web</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e3f2fd, #fff);
+      color: #333;
+    }
+
+    header {
+      background: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    .container {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .card a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
-  <h1>Selamat datang di percobaan HTML!</h1>
-  <p>Ini adalah halaman pertamaku di GitHub Pages.</p>
+
+  <header>
+    <h1>📘 Beranda Belajar Web</h1>
+    <p>Mulai dari dasar HTML sampai JavaScript dan Termux</p>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>🔤 HTML</h2>
+      <p>Struktur dasar halaman web</p>
+      <a href="html.html">Buka Materi</a>
+    </div>
+    <div class="card">
+      <h2>🎨 CSS</h2>
+      <p>Mempercantik tampilan web</p>
+      <a href="css.html">Buka Materi</a>
+    </div>
+    <div class="card">
+      <h2>🧠 JavaScript</h2>
+      <p>Menambah logika & interaksi</p>
+      <a href="js.html">Buka Materi</a>
+    </div>
+    <div class="card">
+      <h2>💻 Termux</h2>
+      <p>Belajar terminal & git</p>
+      <a href="termux.html">Buka Materi</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 - Belajar Web oleh Um Ismail
+  </footer>
+
 </body>
 </html>
